@@ -1,0 +1,48 @@
+{
+    "name": "adrienbrault/statsd-collector",
+    "description": "Collections of statsd collectors with templated metric names",
+    "keywords": ["statsd", "graphite", "monitor"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "Liuggio",
+            "email":    "liuggio@gmail.com",
+            "homepage": "https://github.com/Liuggio"
+        },
+        {
+            "name":     "Adrien Brault",
+            "email":    "adrien.brault@gmail.com"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/adrienbrault/statsd-collectors/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "liuggio/statsd-php-client": "1.0.*",
+        "symfony/http-foundation": "~2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7",
+        "hautelook/frankenstein": "~0.1",
+        "atoum/atoum": "dev-master",
+
+        "symfony/security": "~2.2",
+        "doctrine/dbal": "~2.2",
+        "monolog/monolog": "~1.2",
+        "symfony/yaml": "~2.0"
+    },
+    "suggest": {
+        "doctrine/dbal": "Doctrine Dbal, collect statistic to/from the database (>=2.2.0,<2.4-dev required)",
+        "monolog/monolog": "Monolog, in order to generate statistic from log >=1.2.0)"
+    },
+    "autoload": {
+        "psr-0": { "AdrienBrault\\StatsDCollector": "src" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
