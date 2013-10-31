@@ -46,12 +46,12 @@ class DoctrineDbalCollector extends AbstractCollector implements SQLLogger
      */
     public function startQuery($sql, array $params = null, array $types = null)
     {
-        $queryType = 'null';
+        $queryType = null;
         if (preg_match('/^(\w+)(?:\s+|$)/', $sql, $matches)) {
             $queryType = strtolower($matches[1]);
         }
 
-        $table = 'null';
+        $table = null;
         if (preg_match(self::REGEX_TABLE, $sql, $matches)) {
             $table = strtolower($matches['table']);
         }

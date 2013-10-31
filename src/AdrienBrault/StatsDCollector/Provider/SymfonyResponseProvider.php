@@ -36,9 +36,9 @@ class SymfonyResponseProvider implements ParameterProviderInterface
      */
     public function getParameters()
     {
-        $code = 'null';
-        $codeType = 'null';
-        $cacheable = 'null';
+        $code = null;
+        $codeType = null;
+        $cacheable = null;
 
         if (null !== $this->response) {
             $code = sprintf('%d', $this->response->getStatusCode());

@@ -25,14 +25,21 @@ class StatsDDataCollector
      */
     private $parameters;
 
+    /**
+     * @var string
+     */
+    private $nullReplacement;
+
     public function __construct(
         array $collectors = array(),
         array $parameterProviders = array(),
-        array $parameters = array()
+        array $parameters = array(),
+        $nullReplacement = 'null'
     ) {
         $this->collectors = $collectors;
         $this->parameterProviders = $parameterProviders;
         $this->parameters = $parameters;
+        $this->nullReplacement = $nullReplacement;
 
         foreach ($this->collectors as $template => $collector) {
             if (!is_string($template)) {
@@ -78,8 +85,9 @@ class StatsDDataCollector
 
     private function createStatData(Stat $stat, $template, array $parameters)
     {
+        $nullReplacement = $this->nullReplacement;
         $parameters = array_merge($parameters, $stat->getParameters());
-        $key = preg_replace_callback('/{(?P<name>[^}]+)}/', function ($matches) use ($parameters) {
+        $key = preg_replace_callback('/{(?P<name>[^}]+)}/', function ($matches) use ($parameters, $nullReplacement) {
             $name = $matches['name'];
             if (!array_key_exists($name, $parameters)) {
                 throw new \RuntimeException(
@@ -87,7 +95,13 @@ class StatsDDataCollector
                 );
             }
 
-            return $parameters[$name];
+            $parameter = $parameters[$name];
+
+            if (null === $parameter) {
+                $parameter = $nullReplacement;
+            }
+
+            return $parameter;
         }, $template);
 
         $statData = new StatsdData();

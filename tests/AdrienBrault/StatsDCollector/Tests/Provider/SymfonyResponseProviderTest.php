@@ -14,9 +14,9 @@ class SymfonyResponseProviderTest extends TestCase
         $this
             ->array($provider->getParameters())
                 ->isIdenticalTo(array(
-                    'response_code' => 'null',
-                    'response_code_type' => 'null',
-                    'response_cacheable' => 'null',
+                    'response_code' => null,
+                    'response_code_type' => null,
+                    'response_cacheable' => null,
                 ))
         ;
     }

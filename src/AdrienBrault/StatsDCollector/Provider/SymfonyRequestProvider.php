@@ -36,10 +36,10 @@ class SymfonyRequestProvider implements ParameterProviderInterface
      */
     public function getParameters()
     {
-        $format = 'null';
-        $scheme = 'null';
-        $ajax = 'null';
-        $locale = 'null';
+        $format = null;
+        $scheme = null;
+        $ajax = null;
+        $locale = null;
 
         if (null !== $this->request) {
             $format = $this->request->getRequestFormat();

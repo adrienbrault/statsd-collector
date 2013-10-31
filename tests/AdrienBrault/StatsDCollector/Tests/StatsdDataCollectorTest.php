@@ -32,18 +32,20 @@ class StatsDDataCollectorTest extends TestCase
             ->getParameters()
             ->willReturn(array(
                 'http_status' => '404',
+                'http_something' => null,
             ))
         ;
         $dataCollector = new StatsDDataCollector(
             array(
-                '{app}.{foo_foo}.foobar.{http_status}' => $collectorProphecy->reveal(),
+                '{app}.{foo_foo}.{http_something}.foobar.{http_status}' => $collectorProphecy->reveal(),
             ),
             array(
                 $parameterProviderProphecy->reveal(),
             ),
             array(
                 'app' => 'yolo',
-            )
+            ),
+            'null___'
         );
 
         $this
@@ -53,7 +55,7 @@ class StatsDDataCollectorTest extends TestCase
                 ->isInstanceOf('Liuggio\StatsdClient\Entity\StatsdData')
                 ->and
                 ->string($statData->getKey())
-                    ->isEqualTo('yolo.foo.foobar.404')
+                    ->isEqualTo('yolo.foo.null___.foobar.404')
                 ->string($statData->getMetric())
                     ->isEqualTo('metric_foo')
                 ->variable($statData->getValue())

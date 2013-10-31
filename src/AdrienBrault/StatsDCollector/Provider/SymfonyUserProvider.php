@@ -27,8 +27,8 @@ class SymfonyUserProvider implements ParameterProviderInterface
      */
     public function getParameters()
     {
-        $status = 'null';
-        $username = 'null';
+        $status = null;
+        $username = null;
 
         if (null !== $this->securityContext) {
             try {

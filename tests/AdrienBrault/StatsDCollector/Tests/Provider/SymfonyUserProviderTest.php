@@ -16,8 +16,8 @@ class SymfonyUserProviderTest extends TestCase
         $this
             ->array($provider->getParameters())
                 ->isIdenticalTo(array(
-                    'user_status' => 'null',
-                    'user_username' => 'null',
+                    'user_status' => null,
+                    'user_username' => null,
                 ))
         ;
     }

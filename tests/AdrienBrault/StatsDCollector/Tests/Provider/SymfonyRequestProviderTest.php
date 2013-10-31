@@ -14,10 +14,10 @@ class SymfonyRequestProviderTest extends TestCase
         $this
             ->array($provider->getParameters())
                 ->isIdenticalTo(array(
-                    'request_format' => 'null',
-                    'request_scheme' => 'null',
-                    'request_ajax' => 'null',
-                    'request_locale' => 'null',
+                    'request_format' => null,
+                    'request_scheme' => null,
+                    'request_ajax' => null,
+                    'request_locale' => null,
                 ))
         ;
     }
