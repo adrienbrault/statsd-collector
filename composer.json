@@ -30,8 +30,7 @@
 
         "symfony/security": "~2.2",
         "doctrine/dbal": "~2.2",
-        "monolog/monolog": "~1.2",
-        "symfony/yaml": "~2.0"
+        "solarium/solarium": "~3.0"
     },
     "suggest": {
         "doctrine/dbal": "Doctrine Dbal, collect statistic to/from the database (>=2.2.0,<2.4-dev required)",

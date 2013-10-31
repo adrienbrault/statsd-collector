@@ -15,7 +15,7 @@ class SymfonyUserProviderTest extends TestCase
 
         $this
             ->array($provider->getParameters())
-                ->isEqualTo(array(
+                ->isIdenticalTo(array(
                     'user_status' => 'null',
                     'user_username' => 'null',
                 ))
@@ -41,7 +41,7 @@ class SymfonyUserProviderTest extends TestCase
 
         $this
             ->array($provider->getParameters())
-                ->isEqualTo(array(
+                ->isIdenticalTo(array(
                     'user_status' => 'remember_me',
                     'user_username' => 'Adrien',
                 ))

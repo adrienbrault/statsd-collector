@@ -4,6 +4,7 @@ namespace AdrienBrault\StatsDCollector\Collector;
 
 use AdrienBrault\StatsDCollector\Stat;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
 /**
  * @author Adrien Brault <adrien.brault@gmail.com>
@@ -21,5 +22,10 @@ class ExceptionCollector extends AbstractCollector
                 )
             )
         );
+    }
+
+    public function onKernelException(GetResponseForExceptionEvent $event)
+    {
+        $this->collectException($event->getException());
     }
 }

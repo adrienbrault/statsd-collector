@@ -24,7 +24,9 @@ class ExceptionCollectorTest extends TestCase
     {
         $collector = new ExceptionCollector();
         $collector->collectException(new \Exception());
-        $collector->collectException(new \RuntimeException());
+        $eventProphecy = $this->prophesize('Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent');
+        $eventProphecy->getException()->willReturn(new \RuntimeException());
+        $collector->onKernelException($eventProphecy->reveal());
         $collector->collectException(new NotFoundHttpException());
 
         $this
