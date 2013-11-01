@@ -17,7 +17,7 @@ class MemoryCollector implements CollectorInterface
     public function getStats()
     {
         return array(
-            new Stat(StatsdDataInterface::STATSD_METRIC_GAUGE, $this->getMemoryUsage()),
+            new Stat(StatsdDataInterface::STATSD_METRIC_TIMING, $this->getMemoryUsage()),
         );
     }
 

@@ -19,7 +19,7 @@ class MemoryCollectorTest extends TestCase
                 ->isInstanceOf('AdrienBrault\StatsDCollector\Stat')
                 ->and
                 ->variable($stat->getType())
-                    ->isEqualTo(StatsdDataInterface::STATSD_METRIC_GAUGE)
+                    ->isEqualTo(StatsdDataInterface::STATSD_METRIC_TIMING)
                 ->integer($stat->getValue())
                     ->isGreaterThan(0)
                 ->array($stat->getParameters())
