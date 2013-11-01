@@ -6,6 +6,7 @@ use AdrienBrault\StatsDCollector\CollectorInterface;
 use AdrienBrault\StatsDCollector\Stat;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
  * @author Adrien Brault <adrien.brault@gmail.com>
@@ -25,6 +26,11 @@ class TimeCollector implements CollectorInterface
     public function setRequest(Request $request = null)
     {
         $this->request = $request;
+    }
+
+    public function onKernelRequest(GetResponseEvent $event)
+    {
+        $this->setRequest($event->getRequest());
     }
 
     /**
