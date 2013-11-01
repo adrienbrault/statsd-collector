@@ -14,7 +14,7 @@ class ServerProviderTest extends TestCase
         $this
             ->array($provider->getParameters())
             ->isIdenticalTo(array(
-                'server_hostname' => gethostname(),
+                'server_hostname' => strtolower(preg_replace('/[^a-z0-9_]/', '_', gethostname())),
             ))
         ;
     }
