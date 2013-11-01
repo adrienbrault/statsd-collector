@@ -42,7 +42,7 @@ class TimeCollector implements CollectorInterface
             return array();
         }
 
-        $elapsedTime = round((microtime(true) - $startTime) * 1000);
+        $elapsedTime = TimeUtil::getElapsedTime($startTime);
 
         return array(
             new Stat(StatsdDataInterface::STATSD_METRIC_TIMING, $elapsedTime),

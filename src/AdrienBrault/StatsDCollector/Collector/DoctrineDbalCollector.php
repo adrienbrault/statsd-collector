@@ -56,7 +56,7 @@ class DoctrineDbalCollector extends AbstractCollector implements SQLLogger
             $table = strtolower($matches['table']);
         }
 
-        $this->currentQueryStartTime = $this->getTimeMs();
+        $this->currentQueryStartTime = TimeUtil::getCurrentTime();
         $this->currentQueryParameters = array(
             'query_type' => $queryType,
             'query_table' => $table,
@@ -68,7 +68,7 @@ class DoctrineDbalCollector extends AbstractCollector implements SQLLogger
      */
     public function stopQuery()
     {
-        $duration = $this->getTimeMs() - $this->currentQueryStartTime;
+        $duration = TimeUtil::getElapsedTime($this->currentQueryStartTime);
 
         $this->addStat(
             new Stat(
@@ -77,10 +77,5 @@ class DoctrineDbalCollector extends AbstractCollector implements SQLLogger
                 $this->currentQueryParameters
             )
         );
-    }
-
-    private function getTimeMs()
-    {
-        return microtime(true) * 1000;
     }
 }

@@ -48,12 +48,12 @@ class SolariumCollector extends AbstractCollector implements PluginInterface
     {
         $this->currentRequest = $event->getRequest();
         $this->currentEndpoint = $event->getEndpoint();
-        $this->currentStartTime = microtime(true);
+        $this->currentStartTime = TimeUtil::getCurrentTime();
     }
 
     public function postExecuteRequest(PostExecuteRequest $event)
     {
-        $timeElapsed = microtime(true) - $this->currentStartTime;
+        $timeElapsed = TimeUtil::getElapsedTime($this->currentStartTime);
 
         if (!isset($this->currentRequest)) {
             throw new \RuntimeException('Request not set');
@@ -65,7 +65,7 @@ class SolariumCollector extends AbstractCollector implements PluginInterface
         $this->addStat(
             new Stat(
                 StatsdDataInterface::STATSD_METRIC_TIMING,
-                $timeElapsed * 1000,
+                $timeElapsed,
                 array(
                     'solarium_endpoint' => $this->currentEndpoint->getKey(),
                     'solarium_request_method' => strtolower($event->getRequest()->getMethod()),
