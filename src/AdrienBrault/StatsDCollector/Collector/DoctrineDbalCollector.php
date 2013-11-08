@@ -21,6 +21,7 @@ class DoctrineDbalCollector extends AbstractCollector implements SQLLogger
                 |delete\s+from
                 |update
                 |select.+from
+                |call
             )
 
             \s+
