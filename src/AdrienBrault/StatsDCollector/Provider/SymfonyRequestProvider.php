@@ -5,6 +5,7 @@ namespace AdrienBrault\StatsDCollector\Provider;
 use AdrienBrault\StatsDCollector\ParameterProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * @author Adrien Brault <adrien.brault@gmail.com>
@@ -28,6 +29,10 @@ class SymfonyRequestProvider implements ParameterProviderInterface
 
     public function onKernelRequest(GetResponseEvent $event)
     {
+        if ($event->getRequestType() !== HttpKernelInterface::MASTER_REQUEST) {
+            return;
+        }
+
         $this->setRequest($event->getRequest());
     }
 
